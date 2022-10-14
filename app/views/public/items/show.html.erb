@@ -1,2 +1,13 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<h2>商品詳細</h2>
+<% if @item.image.attached? %>
+    <%= image_tag @item.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+
+
+  <%= @item.name %>
+
+  <%= @item.introduction %>
+
+  ￥<%= @item.add_tax_price.to_s(:delimited) %>(税抜)

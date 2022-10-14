@@ -1,2 +1,36 @@
-<h2>商品一覧</h2>
+<div class="col-md-8 offset-md-1">
+  <h2>商品一覧</h2>
+  <%= link_to new_admin_item_path, class: "nav-link text-dark" do %>
+  <i class="fa-thin fa-circle-plus"></i>new
+  <% end %>
 
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <% @items.each do |item| %>
+    <tbody>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= link_to item.name, admin_item_path(item.id) %></td>
+        <td><%= item.price.to_s(:delimited) %></td>
+        <td><%= item.genre.name %></td>
+        <td>
+          <% case item.is_active %>
+          <% when true then %>
+            <p class="text-success">販売中</p>
+          <% else %>
+            <p class="text-secondary">販売停止中</p>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
