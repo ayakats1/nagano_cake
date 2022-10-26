@@ -20,10 +20,10 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class: "btn btn-primary" %>
   </div>
 <% end %>
 
-<h4>館員登録がお済みでない方</h4>
+<p>館員登録がお済みでない方</p>
 
-<%= render "public/shared/links" %>
+<%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。

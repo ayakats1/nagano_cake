@@ -1,1 +1,31 @@
-  <h2>注文履歴詳細</h2>
+  <div class="col-md-7">
+    <h2>注文履歴詳細</h2>
+
+      <table class="table table-borderless">
+        <tr>
+          <th width="30%">購入者</th>
+          <th width="70%">
+            <%= @order.first_name+@oder.last_name %>
+          </th>
+        </tr>
+        <tr>
+          <th>注文日</th>
+          <th>
+            <%#= @order. %>
+          </th>
+        </tr>
+        <tr>
+          <th>配達先</th>
+          <th><%#= @order. %></th>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <th><%#= @order. %></th>
+        </tr>
+        <tr>
+          <th>注文ステータス</th>
+          <th><%= @oreder %></th>
+        </tr>
+      </table>
+
+  </div>

@@ -14,11 +14,14 @@
       <tbody>
         <tr>
           <td><%= customer.id %></td>
-          <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
+          <td><%= link_to admin_customer_path(customer.id) do %>
+                <%= customer.first_name+customer.last_name %>
+              <% end %>
+          </td>
           <td><%= customer.email %></td>
           <td>
             <% case customer.is_deleted %>
-            <% when true then %>
+            <% when false then %>
               <p class="text-success">有効</p>
             <% else %>
               <p class="text-secondary">退会</p>

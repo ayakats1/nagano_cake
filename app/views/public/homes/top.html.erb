@@ -8,12 +8,13 @@
     <h4>新着商品</h4>
     <% @items.each do |item| %>
       <% if item.image.attached? %>
-        <%= link_to image_tag(item.image, size: "100x100"), public_item_path(item.id) %>
+        <%= link_to image_tag(item.image, size: "100x100"), item_path(item.id) %>
       <% else %>
-        <%= link_to image_tag('no_image', size: "100x100"), public_item_path(item.id) %>
+        <%= link_to image_tag('no_image', size: "100x100"), item_path(item.id) %>
       <% end %>
       <%= item.name %>
       <%= item.price.to_s(:delimited) %>
-    <% end %>
 
-    <%= link_to '全ての商品を見る＞', public_items_path %>
+    <% end %><br>
+
+      <%= link_to '全ての商品を見る＞', items_path %>
