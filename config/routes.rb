@@ -26,12 +26,12 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe'
     patch 'customers/unsubscribe' => 'customers#withdraw'
 
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items
-    delete 'cart_items' => 'cart_items#destroy_all'
 
+    get 'orders/complate' => 'orders#complate'
     resources :orders
     post 'orders/comfirm' => 'orders#comfirm'
-    get 'orders/complate' => 'orders#complate'
 
     resources :addresses
   end

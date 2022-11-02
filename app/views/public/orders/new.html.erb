@@ -1,1 +1,50 @@
-<h2>注文情報入力</h2>
+<div class='container'>
+  <div class='row'>
+    <div class="col-md-12">
+    <h2>注文情報入力</h2>
+        <h4>支払方法</h4>
+          <%= form_with model: @order, url: orders_comfirm_path, method: :post do |order| %>
+            <div>
+              <%= order.radio_button :payment_method, Order.payment_methods.key(0) %>
+              <%= order.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+            </div>
+            <div>
+              <%= order.radio_button :payment_method, Order.payment_methods.key(1) %>
+              <%= order.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+            </div>
+        <h4>お届け先</h4>
+            <%= order.radio_button :address_select, 0 %>ご自身の住所
+              <div>
+                〒<%= @customer.postal_code %>
+                <%= @customer.address %>
+              </div>
+              <div>
+                <%= @customer.first_name %>
+                <%= @customer.last_name %>
+              </div>
+            <%= order.radio_button :address_select, 1 %>登録済住所から選択
+              <div><%= order.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %></div>
+            <%= order.radio_button :address_select, 2 %>新しいお届け先
+              <table class="table table-borderless">
+                <tr>
+                  <th width="20%"><%= order.label :郵便番号 %>(ハイフンなし)</th>
+                  <td width="80%">
+                    <%= order.text_field :postal_code %>
+                  </td>
+                </tr>
+                <tr>
+                  <th><%= order.label :住所 %></th>
+                  <td>
+                    <%= order.text_field :address, :size => "60*60" %>
+                  </td>
+                </tr>
+                <tr>
+                  <th><%= order.label :宛名 %></th>
+                  <td><%= order.text_field :name %></td>
+                </tr>
+              </table>
+              <%= order.submit "確認画面へ進む", class: "btn btn-primary" %>
+          <% end %>
+      </div>
+  </div>
+</div>
