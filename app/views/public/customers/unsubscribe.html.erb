@@ -1,0 +1,16 @@
+  <div class='container'>
+    <div class='row'>
+      <div class='col-8'>
+    <h2>本当に退会しますか？</h2>
+      <h4>退会すると、会員登録情報や<br>
+          これらの購入履歴が閲覧できなくなります。<br>
+          退会する場合は、「退会する」をクリックして下さい。
+      </h4>
+
+        <%= link_to customers_my_page_path, class: "btn btn-primary" do %>退会しない
+        <% end %>
+        <%= link_to customers_unsubscribe_path, method: :patch, class: "btn btn-danger", "data-confirm" => "本当に退会しますか？" do %>退会する
+        <% end %>
+      </div>
+    </div>
+  </div>

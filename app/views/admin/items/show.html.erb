@@ -1,48 +1,53 @@
-<h2>商品詳細</h2>
-<div class="row">
-<div class="col-4">
-  <% if @item.image.attached? %>
-    <%= image_tag @item.image, size: "300x300" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "300x300" %>
-  <% end %>
-</div>
-<div class="col-6">
-  <table class='table table-borderless'>
-    <tr>
-      <th width="30%">商品名</th>
-      <th width="70%"><%= @item.name %></th>
-    </tr>
-    <tr>
-      <th>商品説明</th>
-      <th><%= @item.introduction %></th>
-    </tr>
-    <tr>
-      <th>ジャンル</th>
-      <th><%= @item.genre.name %></th>
-    </tr>
-    <tr>
-      <th>税込価格<br>
-          (税抜価格)
-      </th>
-      <th><%= @item.with_tax_price.to_s(:delimited) %>
-          (<%= @item.price.to_s(:delimited) %>)円
-      </th>
-    </tr>
-    <tr>
-    <th>販売ステータス</th>
-      <th>
-        <% case @item.is_active %>
-          <% when true then %>
-            <p class="text-success">販売中</p>
+  <div class='container'>
+    <div class='row'>
+      <h2>商品詳細</h2>
+    </div>
+      <div class="row">
+        <div class="col-4">
+          <% if @item.image.attached? %>
+            <%= image_tag @item.image, size: "300x300" %>
           <% else %>
-            <p class="text-secondary">販売停止中</p>
+            <%= image_tag 'no_image', size: "300x300" %>
           <% end %>
-      </th>
-    </tr>
-  </table>
-
-  <%= link_to edit_admin_item_path, class: "btn btn-success" do %>編集する
-  <% end %>
-</div>
-</div>
+        </div>
+        <div class="col-6">
+          <table class='table table-borderless'>
+            <tr>
+              <th width="30%">商品名</th>
+              <th width="70%"><%= @item.name %></th>
+            </tr>
+            <tr>
+              <th>商品説明</th>
+              <th><%= @item.introduction %></th>
+            </tr>
+            <tr>
+              <th>ジャンル</th>
+              <th><%= @item.genre.name %></th>
+            </tr>
+            <tr>
+              <th>税込価格<br>
+                  (税抜価格)
+              </th>
+              <th><%= @item.with_tax_price.to_s(:delimited) %>
+                  (<%= @item.price.to_s(:delimited) %>)円
+              </th>
+            </tr>
+            <tr>
+            <th>販売ステータス</th>
+              <th>
+                <% case @item.is_active %>
+                  <% when true then %>
+                    <p class="text-success">販売中</p>
+                  <% else %>
+                    <p class="text-secondary">販売停止中</p>
+                  <% end %>
+              </th>
+            </tr>
+          </table>
+        
+          <%= link_to edit_admin_item_path, class: "btn btn-success" do %>編集する
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,10 +1,10 @@
 class Public::OrdersController < ApplicationController
   def index
-    @orders = Order.all
-    @order_details = OrderDetail.all
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
   def new
+    return redirect_to cart_items_path if current_customer.cart_items.blank?
     @order = Order.new
     @addresses = Address.all
     @address = Address.new
@@ -39,7 +39,7 @@ class Public::OrdersController < ApplicationController
       @order_detail.order_id = @order.id
       @order_detail.purchase_price = cart_item.item.with_tax_price
       @order_detail.amount = cart_item.amount
-      @order_detail.making = "production_not_possible"
+      @order_detail.making_status = "production_not_possible"
       @order_detail.save!
     end
     current_customer.cart_items.destroy_all
@@ -50,6 +50,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
+    #@order_detail = OrderDetail.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private

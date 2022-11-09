@@ -10,7 +10,7 @@
     <div class='row'>
       <div class="col-md-10">
         <table class="table table-bordered">
-          <thead>
+          <thead class="table-active">
               <th>商品名</th>
               <th>単価(税込)</th>
               <th>数量</th>
@@ -28,7 +28,7 @@
                   <% end %>
               </td>
               <td><%= cart_item.subtotal %></td>
-              <td><%= link_to "削除する", cart_item_path(cart_item.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか？"%></td>
+              <td><%= link_to "削除する", cart_item_path(cart_item.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか？" %></td>
             </tr>
           </tbody>
           <% @subtotal +=  (cart_item.item.price * 1.1).floor * cart_item.amount %>
@@ -39,7 +39,7 @@
     </div>
         <div class='row'>
           <div class='col-md-2'>
-             <%= link_to items_path, class: "btn btn-primary" do %>買い物を続ける
+             <%= link_to root_path, class: "btn btn-primary" do %>買い物を続ける
              <% end %>
           </div>
           <div class='col-md-3 offset-5'>
@@ -47,7 +47,7 @@
             <table class="table table-bordered">
               <tbody>
                 <tr>
-                  <th>合計金額</th>
+                  <th class="table-active">合計金額</th>
                   <td><%= @subtotal %></td>
                 </tr>
               </tbody>
